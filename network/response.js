@@ -1,27 +1,14 @@
-const statusMessages = {
-	'200': 'Done',
-	'201': 'Created',
-	'400': 'Invalid format',
-	'500': 'Internal error'
-};
+const chalk = require('chalk');
 
 exports.success = function(req, res, message, status){
-	let statusCode = status;
-	let statusMessage = message;
-	if (!status) {
-		status = 200;
-	}
-	if (!message) {
-		statusMessage = statusMessages[status];
-	}
-	res.status(statusCode).send({
+	res.status(status).send({
 		error: '',
-		message: statusMessage
+		message: message
 	});
 }
 
 exports.error = function(req, res, error, status, details){
-  console.error('[response error] ' + details);
+  console.error(chalk.red('[response error] ' + details));
 	res.status(status || 500).send({
 		error: error,
 		message: ''
