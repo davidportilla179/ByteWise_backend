@@ -5,7 +5,13 @@ const response= require('../../network/response');
 const controller = require('./controller');
 //routes
 router.get('/', function(req, res){
-  response.success(req,res,"Metodo GET", 200);
+  controller.getCourses()
+    .then((coursesList) => {
+      response.success(req, res, coursesList, 200);
+    })
+    .catch(error => {
+      response.error(req, res, "Unexpected error", 500, error)
+    })
 })
 router.post('/', function(req, res){
   const { title, description, temary, teacher } = req.body;

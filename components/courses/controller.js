@@ -1,4 +1,4 @@
-
+const store = require('./store');
 
 function addCourse(title, description, temary, teacher) {
   return new Promise((resolve, reject) => {
@@ -13,11 +13,18 @@ function addCourse(title, description, temary, teacher) {
       temary: temary,
       teacher: teacher
     }
-    console.log(fullCourse);
+    store.add(fullCourse)
     resolve(fullCourse);
   });
 };
 
+function getCourses() {
+  return new Promise((resolve, reject) => {
+    resolve(store.list());
+  })
+}
+
 module.exports = {
   addCourse,
+  getCourses,
 };
