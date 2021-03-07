@@ -18,9 +18,9 @@ function addCourse(title, description, temary, teacher) {
   });
 };
 
-function getCourses() {
+function getCourses(filterCoursesFromTeacher) {
   return new Promise((resolve, reject) => {
-    resolve(store.list());
+    resolve(store.list(filterCoursesFromTeacher));
   })
 }
 

@@ -9,14 +9,16 @@ db.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.error('[db]', err));
 
 function addCourse(fullCourse) {
-  //list.push(fullCourse);
   const course = new Model(fullCourse);
   course.save();
 }
 
-async function getCourses(){
-  //return list;
-  const courses = await Model.find();
+async function getCourses(filterCoursesFromTeacher){
+  const filter = {};
+  if (filterCoursesFromTeacher !== null) {
+    filter = { teacher: filterCoursesFromTeacher };
+  }
+  const courses = await Model.find(filter);
   return courses;
 }
 

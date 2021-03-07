@@ -6,7 +6,10 @@ const controller = require('./controller');
 
 //routes
 router.get('/', function(req, res){
-  controller.getCourses()
+  //filtro en los queries
+  const filterCoursesFromTeacher = req.query.teacher || null;
+  console.log(filterCoursesFromTeacher)
+  controller.getCourses(filterCoursesFromTeacher)
     .then((coursesList) => {
       response.success(req, res, coursesList, 200);
     })
