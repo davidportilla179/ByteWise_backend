@@ -34,8 +34,24 @@ function updateCourse(id, teacher) {
   })
 }
 
+function deleteCourse(id) {
+  return new Promise((resolve, reject) => {
+    if (!id) {
+      reject('Id invalido')
+    }
+    store.remove(id)
+      .then(() => {
+        resolve();
+      })
+      .catch(e => {
+        reject(e);
+      })
+  })
+}
+
 module.exports = {
   addCourse,
   getCourses,
-  updateCourse
+  updateCourse,
+  deleteCourse
 };

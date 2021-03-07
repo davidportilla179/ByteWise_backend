@@ -31,8 +31,15 @@ async function updateCourse(id, teacher) {
   return updatedCourse
 }
 
+function deleteCourse(id) {
+  return Model.deleteOne({
+    _id: id
+  })
+}
+
 module.exports = {
   add: addCourse,
   list: getCourses,
   updateCourse: updateCourse,
+  remove: deleteCourse,
 }

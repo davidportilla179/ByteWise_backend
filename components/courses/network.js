@@ -14,7 +14,7 @@ router.get('/', function(req, res){
       response.success(req, res, coursesList, 200);
     })
     .catch(error => {
-      response.error(req, res, "Unexpected error", 500, error)
+      response.error(req, res, "Unexpected error", 500, error);
     })
 })
 
@@ -25,7 +25,7 @@ router.post('/', function(req, res){
       response.success(req, res, fullCourse, 201);
     })
     .catch(error => {
-      response.error(req, res, "Información invalida", 400, "Error en el controlador courses")
+      response.error(req, res, "Información invalida", 400, "Error en el controlador courses");
     })
 });
 
@@ -35,7 +35,17 @@ router.patch('/:id', function(req,res) {
       response.success(req, res, data, 200);
     })
     .catch(error => {
-      response.error(req, res, "Error interno", 500, error)
+      response.error(req, res, "Error interno", 500, error);
+    });
+})
+
+router.delete('/:id', function(req, res) {
+  controller.deleteCourse(req.params.id)
+    .then(() => {
+      response.success(req, res, `Usuario ${req.params.id} eliminado`, 200);
+    })
+    .catch(error => {
+      response.error(req, res, "Error interno", 500, error);
     });
 })
 
