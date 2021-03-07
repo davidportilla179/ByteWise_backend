@@ -6,7 +6,7 @@ const mySchema = new Schema({
   title: String,
   description: String,
   temary: Array,
-  teacher: ObjectId,
+  teacher: Number,
 });
 
 const model = mongoose.model('Course', mySchema);

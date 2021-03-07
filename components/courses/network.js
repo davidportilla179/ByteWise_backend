@@ -3,6 +3,7 @@ const router = express.Router();
 
 const response= require('../../network/response');
 const controller = require('./controller');
+
 //routes
 router.get('/', function(req, res){
   controller.getCourses()
@@ -13,6 +14,7 @@ router.get('/', function(req, res){
       response.error(req, res, "Unexpected error", 500, error)
     })
 })
+
 router.post('/', function(req, res){
   const { title, description, temary, teacher } = req.body;
   controller.addCourse(title, description, temary, teacher)
@@ -23,5 +25,6 @@ router.post('/', function(req, res){
       response.error(req, res, "Información invalida", 400, "Error en el controlador courses")
     })
 });
+
 
 module.exports = router;
