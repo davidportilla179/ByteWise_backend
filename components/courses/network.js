@@ -26,5 +26,14 @@ router.post('/', function(req, res){
     })
 });
 
+router.patch('/:id', function(req,res) {
+  controller.updateCourse(req.params.id, req.body.teacher)
+    .then((data) => {
+      response.success(req, res, data, 200);
+    })
+    .catch(error => {
+      response.error(req, res, "Error interno", 500, error)
+    });
+})
 
 module.exports = router;

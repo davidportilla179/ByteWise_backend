@@ -10,8 +10,8 @@ db.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 function addCourse(fullCourse) {
   //list.push(fullCourse);
-  const myCourse = new Model(fullCourse);
-  myCourse.save();
+  const course = new Model(fullCourse);
+  course.save();
 }
 
 async function getCourses(){
@@ -20,7 +20,17 @@ async function getCourses(){
   return courses;
 }
 
+async function updateCourse(id, teacher) {
+  const updatedCourse = await Model.findOneAndUpdate(
+    { _id: id },
+    { teacher },
+    { new: true }
+  )
+  return updatedCourse
+}
+
 module.exports = {
   add: addCourse,
   list: getCourses,
+  updateCourse: updateCourse,
 }

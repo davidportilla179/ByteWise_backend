@@ -24,7 +24,18 @@ function getCourses() {
   })
 }
 
+function updateCourse(id, teacher) {
+  return new Promise(async (resolve, reject) => {
+    if (!id || !teacher) {
+      reject('Invalid data');
+    }
+    const result = await store.updateCourse(id, teacher);
+    resolve(result);
+  })
+}
+
 module.exports = {
   addCourse,
   getCourses,
+  updateCourse
 };
